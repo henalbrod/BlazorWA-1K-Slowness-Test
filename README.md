@@ -4,7 +4,7 @@ Fast-Raw-Test to reproduce a Blazor Webassembly slowness while rendering 1k reco
 I was curious about a Twitter user claims 
 
 ```
-``Blazor Webassembly Not is not ready for prime time´´
+``Blazor Webassembly is not ready for prime time´´
 ```
 
 And, as a Blazor fan, I ran to verify it... and he was right... kind of.
