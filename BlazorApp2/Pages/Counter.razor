@@ -1,0 +1,113 @@
+﻿@page "/counter"
+
+<h1>Test</h1>
+
+<p>Records generation time (ms): @total</p>
+
+<table>
+
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>Prop 1</th>
+                <th>Prop 2</th>
+                <th>Prop 3</th>
+                <th>Prop 4</th>
+                <th>Prop 5</th>
+                <th>Prop 6</th>
+                <th>Prop 7</th>
+                <th>Prop 8</th>
+                <th>Prop 9</th>
+                <th>Prop 10</th>
+                <th>Prop 11</th>
+                <th>Prop 12</th>
+                <th>Prop 13</th>
+                <th>Prop 14</th>
+                <th>Prop 15</th>
+                <th>Prop 16</th>
+                <th>Prop 17</th>
+                <th>Prop 18</th>
+                <th>Prop 19</th>
+                <th>Prop 20</th>
+                <th>Prop 21</th>
+                <th>Prop 22</th>
+                <th>Prop 23</th>
+                <th>Prop 24</th>
+                <th>Prop 25</th>
+                <th>Prop 26</th>
+                <th>Prop 27</th>
+                <th>Prop 28</th>
+                <th>Prop 29</th>
+                <th>Prop 30</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in items.Take(10))
+            {
+            <tr>
+                <td>@item.Index</td>
+                <td>@item.Prop1</td>
+                <td>@item.Prop2</td>
+                <td>@item.Prop3</td>
+                <td>@item.Prop4</td>
+                <td>@item.Prop5</td>
+                <td>@item.Prop6</td>
+                <td>@item.Prop7</td>
+                <td>@item.Prop8</td>
+                <td>@item.Prop9</td>
+                <td>@item.Prop10</td>
+                <td>@item.Prop11</td>
+                <td>@item.Prop12</td>
+                <td>@item.Prop13</td>
+                <td>@item.Prop14</td>
+                <td>@item.Prop15</td>
+                <td>@item.Prop16</td>
+                <td>@item.Prop17</td>
+                <td>@item.Prop18</td>
+                <td>@item.Prop19</td>
+                <td>@item.Prop20</td>
+                <td>@item.Prop21</td>
+                <td>@item.Prop22</td>
+                <td>@item.Prop23</td>
+                <td>@item.Prop24</td>
+                <td>@item.Prop25</td>
+                <td>@item.Prop26</td>
+                <td>@item.Prop27</td>
+                <td>@item.Prop28</td>
+                <td>@item.Prop29</td>
+                <td>@item.Prop30</td>
+            </tr>
+            }
+        </tbody>      
+</table>
+
+@code {
+
+    private List<BlazorApp2.Model.POCO> items = new List<Model.POCO>();
+
+    private long total = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var watch = new System.Diagnostics.Stopwatch();
+
+        watch.Start();
+
+        var pocoService = new POCOService();
+
+        var tempList = new List<Model.POCO>();
+
+        await foreach (var item in pocoService.RangeAsync(1000))
+        {
+            tempList.Add(item);
+        }
+
+        watch.Stop();
+
+        this.total = watch.ElapsedMilliseconds;
+
+    }
+}
